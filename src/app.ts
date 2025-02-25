@@ -1,10 +1,11 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 
 import cors from 'cors';
-
 import router from './app/routes';
 import globalErrorHandler from './app/middlewares/globalErrorhandler';
 import notFound from './app/middlewares/notFound';
+
+
 
 const app: Application = express();
 
@@ -18,7 +19,7 @@ app.use('/api/v1', router);
 app.get('/', (req, res) => {
   res.status(200).json({
     status: true,
-    message: 'Assignment 2 completed succesfully',
+    message: 'Portfolio blogs',
   });
 });
 

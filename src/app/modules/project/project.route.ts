@@ -4,7 +4,7 @@ import { ProjectControllers } from './project.controller';
 const router = express.Router();
 
 router.post('/create-project',ProjectControllers.createProject,);
-  router.get('/:productId', ProjectControllers.getSingleProject);
+  router.get('/:projectId', ProjectControllers.getSingleProject);
   router.get('/', ProjectControllers.getAllProjects);
   router.delete('/:projectId', ProjectControllers.deleteProject);
   
