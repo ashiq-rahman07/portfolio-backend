@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { ErrorRequestHandler } from 'express';
-import { ZodError } from 'zod';
+
 import config from '../config';
-import AppError from '../errors/AppError';
-import handleCastError from '../errors/handleCastError';
-import handleDuplicateError from '../errors/handleDuplicateError';
-import handleValidationError from '../errors/handleValidationError';
-import handleZodError from '../errors/handleZodError';
 import { TErrorSources } from '../interface/error';
+import handleCastError from '../errors/handleCastError';
+import handleValidationError from '../errors/handleValidationError';
+import handleDuplicateError from '../errors/handleDuplicateError';
+import AppError from '../errors/AppError';
+
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   //setting default values
@@ -21,12 +21,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     },
   ];
 
-  if (err instanceof ZodError) {
-    const simplifiedError = handleZodError(err);
-    statusCode = simplifiedError?.statusCode;
-    message = simplifiedError?.message;
-    errorSources = simplifiedError?.errorSources;
-  } else if (err?.name === 'ValidationError') {
+  if (err?.name === 'ValidationError') {
     const simplifiedError = handleValidationError(err);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
